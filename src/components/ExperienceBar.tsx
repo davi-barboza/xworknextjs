@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import styles from '../styles/components/ExperienceBar.module.css';
+
 export function ExperienceBar(){
     const [countXp, setCountXp] = useState(1);
 
@@ -15,21 +17,19 @@ export function ExperienceBar(){
 
             // Formata a data conforme dd/mm/aaaa hh:ii:ss
             const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
-
-            // Exibe na tela usando a div#data-hora
-    
+            // Exibe na tela usando a div#data-hora   
             setCountXp(countXp + 1);
         }, 10000);
     }
     increment();
 
     return (
-        <header className="experience-bar">
+        <header className={styles.experienceBar}>
             <span>{countXp}</span>
             <div>
                 <div style={{width: `${countXp + '%'}` }}></div>
 
-                <span className="current-experience" style={{left: `${countXp + '%'}`}}>
+                <span className={styles.currentExperience} style={{left: `${countXp + '%'}`}}>
                     {countXp}
                 </span>
             </div>
