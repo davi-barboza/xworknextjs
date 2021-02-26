@@ -1,39 +1,24 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 
 import styles from '../styles/components/ExperienceBar.module.css';
 
 export function ExperienceBar(){
-    const [countXp, setCountXp] = useState(1);
-
-    function increment(){
-        const zeroFill = (n: number) => {
-            return ('0' + n).slice(-2);
-        }
-
-        // Cria intervalo
-        const interval = setInterval(() => {
-            // Pega o horário atual
-            const now = new Date();
-
-            // Formata a data conforme dd/mm/aaaa hh:ii:ss
-            const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
-            // Exibe na tela usando a div#data-hora   
-            setCountXp(countXp + 1);
-        }, 10000);
-    }
-    increment();
+    const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
+   
+    const percetToNextLevel = Math.round(currentExperience * 100) / experienceToNextLevel
 
     return (
         <header className={styles.experienceBar}>
-            <span>{countXp}</span>
+            <span>0px</span>
             <div>
-                <div style={{width: `${countXp + '%'}` }}></div>
+                <div style={{width: `${percetToNextLevel}%` }}></div>
 
-                <span className={styles.currentExperience} style={{left: `${countXp + '%'}`}}>
-                    {countXp}
+                <span className={styles.currentExperience} style={{left: `${percetToNextLevel}`}}>
+                    {currentExperience}xp
                 </span>
             </div>
-            <span>600 xp</span>
+            <span>{experienceToNextLevel} xp</span>
         </header>
     );
 }
