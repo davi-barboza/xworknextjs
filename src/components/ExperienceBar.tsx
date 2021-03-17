@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
-import Cookies from 'js-cookie';
 
 import styles from '../styles/components/ExperienceBar.module.css';
 
