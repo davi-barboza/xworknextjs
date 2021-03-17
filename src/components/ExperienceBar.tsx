@@ -1,20 +1,26 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
+import Cookies from 'js-cookie';
 
 import styles from '../styles/components/ExperienceBar.module.css';
 
 export function ExperienceBar(){
-    const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
-   
-    const percetToNextLevel = Math.round(currentExperience * 100) / experienceToNextLevel
+    const { currentExperience, experienceToNextLevel, totalExperience } = useContext(ChallengesContext);
+    const [ percentToNextLevel, setPercentToNextLevel ] = useState(0);
+  
+    useEffect(() => {
+        if( currentExperience != 0){
+            setPercentToNextLevel(Math.round(currentExperience * 100) / experienceToNextLevel);
+        }
+    })
 
     return (
         <header className={styles.experienceBar}>
-            <span>0px</span>
+            <span>{String(totalExperience)}</span>
             <div>
-                <div style={{width: `${percetToNextLevel}%` }}></div>
+                <div style={{ width: `${String(percentToNextLevel)}%` }}></div>
 
-                <span className={styles.currentExperience} style={{left: `${percetToNextLevel}`}}>
+                <span className={styles.currentExperience} style={{left: `${String(percentToNextLevel)}%`}}>
                     {currentExperience}xp
                 </span>
             </div>
