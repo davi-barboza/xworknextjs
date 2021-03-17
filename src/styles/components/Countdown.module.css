@@ -64,3 +64,9 @@
     color: var(--text);
     cursor: not-allowed;
 }
+
+@media(max-width: 450px){
+    .countdownContainer > div {  
+        font-size: 6rem;
+    }
+}

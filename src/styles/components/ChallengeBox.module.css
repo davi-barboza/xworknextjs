@@ -12,6 +12,11 @@
     justify-content: center;
     text-align: center;
 }
+@media(max-width: 700px){
+    .challengeBoxContainer {
+        height: 350px;
+    }
+}
 .challengeNotActive {
     display: flex;
     flex-direction: column;
