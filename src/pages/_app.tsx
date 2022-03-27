@@ -1,10 +1,21 @@
-import { ChallengesProvider } from '../contexts/ChallengesContext';
-import '../styles/global.css';
+import { SessionProvider } from "next-auth/react";
+import { useEffect } from "react";
+import "../styles/global.css";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  // useEffect(() => {
+  //   const jssStyles = document.querySelector("#jss-server-side");
+  //   if (jssStyles) {
+  //     jssStyles.parentElement.removeChild(jssStyles);
+  //   }
+  // }, []);
+
   return (
-    <Component {...pageProps} />
-  )
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 }
-
-export default MyApp
