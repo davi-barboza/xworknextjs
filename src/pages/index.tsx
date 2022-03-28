@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (session) {
     return {
       redirect: {
-        destination: "/app",
+        destination: "https://xwork.vercel.app/app",
         permanent: false,
       },
     };
