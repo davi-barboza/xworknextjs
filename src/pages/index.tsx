@@ -1,7 +1,7 @@
-import { Box, Container, IconButton } from "@material-ui/core";
-import { styled } from "@material-ui/styles";
-import { GetServerSideProps } from "next";
-import { getSession, signIn, useSession } from "next-auth/react";
+import { Box, Button, Container, IconButton } from '@material-ui/core';
+import { GitHub } from '@material-ui/icons';
+import { GetServerSideProps } from 'next';
+import { getSession, signIn } from 'next-auth/react';
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (session) {
     return {
       redirect: {
-        destination: "/app",
+        destination: '/app',
         permanent: false,
       },
     };
@@ -21,24 +21,31 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 export default function SignIn() {
   async function handleSignIn() {
-    signIn("github");
+    signIn('github');
   }
 
   return (
     <Container
       maxWidth="sm"
       style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        height: '100vh',
+        minWidth: '100vw',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <Box>
-        <h1 style={{ textAlign: "center" }}>SignIn</h1>
-        <IconButton onClick={handleSignIn}>
-          <img src="icons/github-icon.png" alt="Github" />
-        </IconButton>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Button variant='outlined' onClick={handleSignIn} style={{ padding: '.5rem 1rem' }}>
+          <GitHub style={{paddingRight: '.5rem'}} fontSize="large" />
+          Login with GitHub
+        </Button>
       </Box>
     </Container>
   );

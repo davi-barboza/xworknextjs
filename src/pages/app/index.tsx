@@ -1,26 +1,27 @@
-import { IconButton } from "@material-ui/core";
-import { ExitToApp } from "@material-ui/icons";
-import { GetServerSideProps } from "next";
-import { signOut, useSession } from "next-auth/react";
-import Head from "next/head";
-import { ChallengeBox } from "../../components/ChallengeBox";
-import { CompletedChallenges } from "../../components/CompletedChallenges";
-import { Countdown } from "../../components/Countdown";
-import { ExperienceBar } from "../../components/ExperienceBar";
-import { Profile } from "../../components/Profile";
-import { ChallengesProvider } from "../../contexts/ChallengesContext";
-import { CountdownProvider } from "../../contexts/CountdownContext";
-import styles from "../../styles/pages/Home.module.css";
+import { IconButton } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
+import { GetServerSideProps } from 'next';
+import { signOut, useSession } from 'next-auth/react';
+import Head from 'next/head';
+import { ChallengeBox } from '../../components/ChallengeBox';
+import { CompletedChallenges } from '../../components/CompletedChallenges';
+import { Countdown } from '../../components/Countdown';
+import { ExperienceBar } from '../../components/ExperienceBar';
+import { Profile } from '../../components/Profile';
+import { ChallengesProvider } from '../../contexts/ChallengesContext';
+import { CountdownProvider } from '../../contexts/CountdownContext';
+import styles from '../../styles/pages/Home.module.css';
 
 interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
   totalExperience: number;
+  time: number;
 }
 
 export default function Home(props: HomeProps) {
-  const { data, status } = useSession();
+  const { data } = useSession();
 
   return (
     <ChallengesProvider
@@ -49,10 +50,7 @@ export default function Home(props: HomeProps) {
           </section>
         </CountdownProvider>
       </div>
-      <IconButton
-        onClick={() => signOut({ callbackUrl: "/" })}
-        style={{ position: "absolute", right: 20, bottom: 20 }}
-      >
+      <IconButton onClick={() => signOut({ callbackUrl: '/' })} style={{ position: 'absolute', right: 20, bottom: 20 }}>
         <ExitToApp color="secondary" fontSize="large" />
       </IconButton>
     </ChallengesProvider>
@@ -60,8 +58,7 @@ export default function Home(props: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted, totalExperience } =
-    ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, totalExperience } = ctx.req.cookies;
 
   return {
     props: {
