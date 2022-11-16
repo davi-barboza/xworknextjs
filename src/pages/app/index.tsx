@@ -3,7 +3,7 @@ import { ExitToApp } from '@material-ui/icons';
 import { GetServerSideProps } from 'next';
 import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AlertDialog from '../../components/AlertDialog';
 import { ChallengeBox } from '../../components/ChallengeBox';
 import { CompletedChallenges } from '../../components/CompletedChallenges';
@@ -24,7 +24,7 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { data } = useSession();
-  const [openAlert, setOpenAlert] = useState(false);
+  const [openAlert, setOpenAlert] = useState(true);
 
   return (
     <ChallengesProvider
