@@ -24,7 +24,12 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { data } = useSession();
-  const [openAlert, setOpenAlert] = useState(true);
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(Notification.permission);
+    setOpenAlert(Notification.permission === 'denied');
+  }, []);
 
   return (
     <ChallengesProvider
