@@ -28,7 +28,7 @@ export default function Home(props: HomeProps) {
 
   useEffect(() => {
     console.log(Notification.permission);
-    setOpenAlert(Notification.permission != 'granted');
+    setOpenAlert(Notification.permission === 'granted' ? false : true);
   }, []);
 
   return (
