@@ -52,8 +52,6 @@ export default function Home(props: HomeProps) {
             </div>
           </section>
         </CountdownProvider>
-
-        <div>{Notification.permission}</div>
       </div>
       <IconButton onClick={() => signOut({ callbackUrl: '/' })} style={{ position: 'absolute', right: 20, bottom: 20 }}>
         <ExitToApp color="secondary" fontSize="large" />
