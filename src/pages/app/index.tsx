@@ -26,6 +26,8 @@ export default function Home(props: HomeProps) {
   const { data } = useSession();
   const [openAlert, setOpenAlert] = useState(true);
 
+  console.log(Notification);
+
   return (
     <ChallengesProvider
       level={props.level}
