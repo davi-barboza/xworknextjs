@@ -22,7 +22,7 @@ const AlertDialog: React.FC<Props> = (props: Props) => {
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={openAlert} onClose={handleClose}>
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">{content}</DialogContentText>
