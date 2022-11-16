@@ -24,11 +24,13 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { data } = useSession();
-  const [openAlert, setOpenAlert] = useState<boolean>(false);
+  const [openAlert, setOpenAlert] = useState<boolean>(
+    Notification.permission === 'denied' || Notification.permission === 'default'
+  );
 
   useEffect(() => {
     console.log(Notification.permission);
-    setOpenAlert(Notification.permission === 'granted' ? false : true);
+    setOpenAlert(Notification.permission === 'denied' || Notification.permission === 'default');
   }, []);
 
   return (
@@ -66,6 +68,7 @@ export default function Home(props: HomeProps) {
         title="Notificações"
         content="Para melhor experiência, habilite as notificações do navegador"
         open={openAlert}
+        setOpen={setOpenAlert}
       />
     </ChallengesProvider>
   );
